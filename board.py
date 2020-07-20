@@ -30,4 +30,4 @@ class Board:
 # Testing
 if __name__ == "__main__":
     board = Board()
-    print(board.as_matrix())
+    print(board.as_string())
