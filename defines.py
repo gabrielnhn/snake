@@ -1,0 +1,3 @@
+LINES = 10
+COLUMNS = 10
+EMPTY = '0'
