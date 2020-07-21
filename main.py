@@ -27,7 +27,7 @@ while True:
 
     # process new input
     key = new_key(scr, key)
-    if key == EXIT_KEY:
+    if chr(key) == EXIT_KEY:
         break
 
     # process new game state:
