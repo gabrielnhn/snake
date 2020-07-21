@@ -9,6 +9,7 @@ class Apple:
         self.column = random.randrange(COLUMNS)
     
     def check(self, board):
+        """If the apple is eaten, change its position to somewhere free"""
         while board.get_coord(self.line, self.column) == SNAKE_CHAR:
             self.line = random.randrange(LINES)
             self.column = random.randrange(COLUMNS)

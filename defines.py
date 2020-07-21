@@ -10,3 +10,5 @@ APPLE_CHAR = '*'
 DELAY_TIME = 0.2 # seconds
 GAME_OVER_TIME = 6 # seconds
 GAME_OVER_STRING = "GAME OVER!"
+
+EXIT_KEY = "Q"

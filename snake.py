@@ -2,7 +2,10 @@ from defines import (LINES, COLUMNS, INITIAL_SIZE)
 
 class Snake:
     def __init__(self):
-        """Initializes the snake with size INITIAL_SIZE"""
+        """
+        Initializes the snake in the center of the board,
+        with size INITIAL_SIZE
+        """
         self.coords = [(LINES//2 - 1, COLUMNS//2 + x - 1) for x in range(-INITIAL_SIZE + 1, 1) ]
 
     def move_to(self, line, column):
