@@ -3,7 +3,8 @@
 <h3>File by file description:</h3>
 
 <ul>
-<li>apple.py<li>
+
+<li>apple.py</li>
 <p>Apple class definition and methods</p>
 
 <li>board.py</li>
