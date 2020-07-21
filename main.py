@@ -54,4 +54,5 @@ while True:
 
 terminate_curses(scr)
 
+# print total score:
 print("Score: {}".format(score))
