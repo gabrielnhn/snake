@@ -10,6 +10,7 @@ class Board:
         line = [EMPTY for j in range(COLUMNS)]
         self.data = [list(line) for i in range(LINES)]
 
+
     def get_coord(self, line, column):
         """Returns the value in (line, column)"""
         return self.data[line][column]
