@@ -13,7 +13,7 @@ APPLE_CHAR = '*'
 APPLE_COLOUR = 3
 
 DELAY_TIME = 0.2 # seconds
-EXIT_KEY = "Q"
+EXIT_KEY = "q"
 
 GAME_OVER_TIME = 3 # seconds
 GAME_OVER_STRING = "GAME OVER!"

@@ -20,7 +20,8 @@ def new_key(scr, old_key):
     according to the current input or the old key.
     """
     new_value = scr.getch()
-    if (new_value == -1) or (new_value == opposite[old_key]):
+    if (new_value == -1) or (new_value == opposite[old_key]) or (
+    (new_value not in opposite) and (chr(new_value) != EXIT_KEY)):
         return old_key
     else:
         return new_value
