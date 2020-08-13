@@ -1,5 +1,5 @@
-LINES = 20
-COLUMNS = 20
+LINES = 13
+COLUMNS = 13
 
 INITIAL_SIZE = 3
 
@@ -12,7 +12,7 @@ SNAKE_COLOUR = 2
 APPLE_CHAR = '*'
 APPLE_COLOUR = 3
 
-DELAY_TIME = 0.2 # seconds
+DELAY_TIME = 0.1 # seconds
 EXIT_KEY = "q"
 
 GAME_OVER_TIME = 3 # seconds
