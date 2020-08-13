@@ -3,25 +3,27 @@ import curses
 from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT)
 from my_curses import (init_curses, terminate_curses)
 from defines import (SNAKE_CHAR, APPLE_CHAR, SNAKE_COLOUR, APPLE_COLOUR,
-                     EMPTY_COLOUR, TEXT_COLOUR,
-                     DELAY_TIME, EXIT_KEY, LINES, COLUMNS,
-                     GAME_OVER_TIME, GAME_OVER_STRING)
+                     EMPTY_COLOUR, TEXT_COLOUR, DELAY_TIME, EXIT_KEY, LINES,
+                     COLUMNS, GAME_OVER_TIME, GAME_OVER_MESSAGE)
 from board import Board
 from snake import Snake
 from apple import Apple
 
+# structures used by function new_key:
 opposite = {KEY_DOWN: KEY_UP, KEY_UP: KEY_DOWN,
             KEY_LEFT: KEY_RIGHT, KEY_RIGHT: KEY_LEFT}
-    # dictionary used by function new_key
+    # stores the opposite key for each arrow key
+arrow_keys = opposite.keys()
+    # stores arrow keys
 
 def new_key(scr, old_key):
     """
-    Returns the key the loop will process,
-    according to the current input or the old key.
+    Returns the keyboard key the loop will process,
+    according to the current 'getch()' input or old key.
     """
     new_value = scr.getch()
     if (new_value == -1) or (new_value == opposite[old_key]) or (
-    (new_value not in opposite) and (chr(new_value) != EXIT_KEY)):
+    (new_value not in arrow_keys) and (chr(new_value) != EXIT_KEY)):
         return old_key
     else:
         return new_value
@@ -29,7 +31,7 @@ def new_key(scr, old_key):
 def set_board(board, snake, apple):
     """
     Sets up the new board to match the coordinates
-    of the apple and the snake
+    of the apple and the snake.
     """
     board.set_coord(apple.line, apple.column, APPLE_CHAR)
     for i, j in snake.coords:
@@ -47,7 +49,7 @@ def print_board(scr, board, score):
     """
     Prints every value in the board,
     matching each of them with its colour.
-    Also prints the current score.
+    Also prints the current score
     """
     scr.erase()
     for line_number, board_line in enumerate(board.as_list(), start=0):
@@ -88,10 +90,10 @@ def new_position(snake, key):
 
 def game_over(scr):
     """
-    The game is finished. Prints GAME_OVER_STRING
+    The game is finished. Prints GAME_OVER_MESSAGE
     for GAME_OVER_TIME at the center of the screen
     """
-    scr.addstr(LINES + 2, column_center(GAME_OVER_STRING),
-    GAME_OVER_STRING, TEXT_COLOUR)
+    scr.addstr(LINES + 2, column_center(GAME_OVER_MESSAGE),
+    GAME_OVER_MESSAGE, TEXT_COLOUR)
     scr.refresh()
     sleep(GAME_OVER_TIME)

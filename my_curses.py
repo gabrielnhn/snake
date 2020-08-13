@@ -2,17 +2,21 @@ import curses
 from defines import (SNAKE_COLOUR, EMPTY_COLOUR, APPLE_COLOUR, TEXT_COLOUR)
 
 def init_colours():
-    """Sets up the colours the program will use."""
+    """Sets up colours used by curses to print the board"""
     curses.start_color()
     curses.use_default_colors()
-    # Number, Foreground, Background
+    # ID, Foreground, Background
+    # Background = -1 -> Keeps the default terminal background
     curses.init_pair(SNAKE_COLOUR, curses.COLOR_GREEN, -1)
     curses.init_pair(EMPTY_COLOUR, curses.COLOR_WHITE, -1)
     curses.init_pair(APPLE_COLOUR, curses.COLOR_RED, -1)
     curses.init_pair(TEXT_COLOUR, curses.COLOR_YELLOW, -1)
 
 def init_curses():
-    """Initializes the curses functionalities the program will use."""
+    """
+    Initializes functionalities from curses module
+    Returns curses.initscr()
+    """
     scr = curses.initscr()
     init_colours()
     curses.noecho()
@@ -24,7 +28,7 @@ def init_curses():
 
 
 def terminate_curses(scr):
-    """Terminates the processes the program doesn't need to use anymore."""
+    """Terminates curses functionalities"""
     scr.clear()
     scr.refresh()
     curses.curs_set(1)
