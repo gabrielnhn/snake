@@ -1,15 +1,22 @@
+import curses # imports colours
+
 LINES = 13
 COLUMNS = 13
 
 INITIAL_SIZE = 3
 
 EMPTY_CHAR = "'"
+EMPTY_COLOUR = curses.COLOR_WHITE
 
 SNAKE_CHAR = "O"
+SNAKE_COLOUR = curses.COLOR_GREEN
 
 APPLE_CHAR = "*"
+APPLE_COLOUR = curses.COLOR_RED
 
-DELAY_TIME = 0.1 # seconds
+TEXT_COLOUR = curses.COLOR_YELLOW
+
+REFRESH_TIME = 0.1 # seconds
 EXIT_KEY = "q"
 
 GAME_OVER_TIME = 3 # seconds

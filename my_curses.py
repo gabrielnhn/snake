@@ -1,19 +1,20 @@
 import curses
+from defines import (EMPTY_COLOUR, SNAKE_COLOUR, APPLE_COLOUR, TEXT_COLOUR)
 
-EMPTY_COLOUR = 1
-SNAKE_COLOUR = 2
-APPLE_COLOUR = 3
-TEXT_COLOUR = 4
+EMPTY_COLOUR_ID = 1
+SNAKE_COLOUR_ID = 2
+APPLE_COLOUR_ID = 3
+TEXT_COLOUR_ID = 4
 def init_colours():
     """Sets up colours used by curses to print the board"""
     curses.start_color()
     curses.use_default_colors()
     # ID, Foreground, Background
     # Background = -1 -> Keeps the default terminal background
-    curses.init_pair(SNAKE_COLOUR, curses.COLOR_GREEN, -1)
-    curses.init_pair(EMPTY_COLOUR, curses.COLOR_WHITE, -1)
-    curses.init_pair(APPLE_COLOUR, curses.COLOR_RED, -1)
-    curses.init_pair(TEXT_COLOUR, curses.COLOR_YELLOW, -1)
+    curses.init_pair(EMPTY_COLOUR_ID, EMPTY_COLOUR, -1)
+    curses.init_pair(SNAKE_COLOUR_ID, SNAKE_COLOUR, -1)
+    curses.init_pair(APPLE_COLOUR_ID, APPLE_COLOUR, -1)
+    curses.init_pair(TEXT_COLOUR_ID, TEXT_COLOUR, -1)
 
 def init_curses():
     """

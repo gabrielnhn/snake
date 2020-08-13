@@ -2,8 +2,8 @@ from time import sleep
 import curses
 from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT)
 from my_curses import (init_curses, terminate_curses,
-                       SNAKE_COLOUR, APPLE_COLOUR, EMPTY_COLOUR, TEXT_COLOUR)
-from defines import (SNAKE_CHAR, APPLE_CHAR, DELAY_TIME, EXIT_KEY, LINES,
+                       SNAKE_COLOUR_ID, APPLE_COLOUR_ID, EMPTY_COLOUR_ID, TEXT_COLOUR_ID)
+from defines import (SNAKE_CHAR, APPLE_CHAR, REFRESH_TIME, EXIT_KEY, LINES,
                      COLUMNS, GAME_OVER_TIME, GAME_OVER_MESSAGE)
 from board import Board
 from snake import Snake
@@ -56,17 +56,17 @@ def print_board(scr, board, score):
         column = 0
         for char in board_line.split():
             if char == SNAKE_CHAR:
-                scr.addstr(line_number, column, char, curses.color_pair(SNAKE_COLOUR))
+                scr.addstr(line_number, column, char, curses.color_pair(SNAKE_COLOUR_ID))
             elif char == APPLE_CHAR:
-                scr.addstr(line_number, column, char, curses.color_pair(APPLE_COLOUR))
+                scr.addstr(line_number, column, char, curses.color_pair(APPLE_COLOUR_ID))
             else:
-                scr.addstr(line_number, column, char, curses.color_pair(EMPTY_COLOUR))
+                scr.addstr(line_number, column, char, curses.color_pair(EMPTY_COLOUR_ID))
             column += 2
     
 
 
     text = "SCORE: {}".format(score)
-    scr.addstr(LINES + 1, column_center(text) + 1, text, TEXT_COLOUR)
+    scr.addstr(LINES + 1, column_center(text) + 1, text, TEXT_COLOUR_ID)
     scr.refresh()
 
 
@@ -94,6 +94,6 @@ def game_over(scr):
     for GAME_OVER_TIME at the center of the screen
     """
     scr.addstr(LINES + 2, column_center(GAME_OVER_MESSAGE),
-    GAME_OVER_MESSAGE, TEXT_COLOUR)
+    GAME_OVER_MESSAGE, TEXT_COLOUR_ID)
     scr.refresh()
     sleep(GAME_OVER_TIME)
