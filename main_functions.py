@@ -2,7 +2,7 @@ from time import sleep
 import curses
 from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT)
 from my_curses import (init_curses, terminate_curses,
-                       SNAKE_COLOUR_ID, APPLE_COLOUR_ID, EMPTY_COLOUR_ID, TEXT_COLOUR_ID)
+                       SNAKE_COLOR_ID, APPLE_COLOR_ID, EMPTY_COLOR_ID, TEXT_COLOR_ID)
 from defines import (SNAKE_CHAR, APPLE_CHAR, REFRESH_TIME, EXIT_KEY, LINES,
                      COLUMNS, GAME_OVER_TIME, GAME_OVER_MESSAGE)
 from board import Board
@@ -48,7 +48,7 @@ def column_center(text):
 def print_board(scr, board, score):
     """
     Prints every value in the board,
-    matching each of them with its colour.
+    matching each of them with its color.
     Also prints the current score
     """
     scr.erase()
@@ -56,17 +56,17 @@ def print_board(scr, board, score):
         column = 0
         for char in board_line.split():
             if char == SNAKE_CHAR:
-                scr.addstr(line_number, column, char, curses.color_pair(SNAKE_COLOUR_ID))
+                scr.addstr(line_number, column, char, curses.color_pair(SNAKE_COLOR_ID))
             elif char == APPLE_CHAR:
-                scr.addstr(line_number, column, char, curses.color_pair(APPLE_COLOUR_ID))
+                scr.addstr(line_number, column, char, curses.color_pair(APPLE_COLOR_ID))
             else:
-                scr.addstr(line_number, column, char, curses.color_pair(EMPTY_COLOUR_ID))
+                scr.addstr(line_number, column, char, curses.color_pair(EMPTY_COLOR_ID))
             column += 2
     
 
 
     text = "SCORE: {}".format(score)
-    scr.addstr(LINES + 1, column_center(text) + 1, text, TEXT_COLOUR_ID)
+    scr.addstr(LINES + 1, column_center(text) + 1, text, TEXT_COLOR_ID)
     scr.refresh()
 
 
@@ -94,6 +94,6 @@ def game_over(scr):
     for GAME_OVER_TIME at the center of the screen
     """
     scr.addstr(LINES + 2, column_center(GAME_OVER_MESSAGE),
-    GAME_OVER_MESSAGE, TEXT_COLOUR_ID)
+    GAME_OVER_MESSAGE, TEXT_COLOR_ID)
     scr.refresh()
     sleep(GAME_OVER_TIME)

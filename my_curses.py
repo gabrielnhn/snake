@@ -1,20 +1,20 @@
 import curses
-from defines import (EMPTY_COLOUR, SNAKE_COLOUR, APPLE_COLOUR, TEXT_COLOUR)
+from defines import (EMPTY_COLOR, SNAKE_COLOR, APPLE_COLOR, TEXT_COLOR)
 
-EMPTY_COLOUR_ID = 1
-SNAKE_COLOUR_ID = 2
-APPLE_COLOUR_ID = 3
-TEXT_COLOUR_ID = 4
-def init_colours():
-    """Sets up colours used by curses to print the board"""
+EMPTY_COLOR_ID = 1
+SNAKE_COLOR_ID = 2
+APPLE_COLOR_ID = 3
+TEXT_COLOR_ID = 4
+def init_colors():
+    """Sets up colors used by curses to print the board"""
     curses.start_color()
     curses.use_default_colors()
     # ID, Foreground, Background
     # Background = -1 -> Keeps the default terminal background
-    curses.init_pair(EMPTY_COLOUR_ID, EMPTY_COLOUR, -1)
-    curses.init_pair(SNAKE_COLOUR_ID, SNAKE_COLOUR, -1)
-    curses.init_pair(APPLE_COLOUR_ID, APPLE_COLOUR, -1)
-    curses.init_pair(TEXT_COLOUR_ID, TEXT_COLOUR, -1)
+    curses.init_pair(EMPTY_COLOR_ID, EMPTY_COLOR, -1)
+    curses.init_pair(SNAKE_COLOR_ID, SNAKE_COLOR, -1)
+    curses.init_pair(APPLE_COLOR_ID, APPLE_COLOR, -1)
+    curses.init_pair(TEXT_COLOR_ID, TEXT_COLOR, -1)
 
 def init_curses():
     """
@@ -22,7 +22,7 @@ def init_curses():
     Returns curses.initscr()
     """
     scr = curses.initscr()
-    init_colours()
+    init_colors()
     curses.noecho()
     curses.cbreak()
     scr.nodelay(True)
