@@ -1,5 +1,5 @@
-<h2>Snake written in Python!
-Uses 'curses' module to print the board in the terminal</h2>
+<h2>Snake written in Python!</h2>
+<h2>Uses 'curses' module to print the board in the terminal</h2>
 
 <h3>Description:</h3>
 
