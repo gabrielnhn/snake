@@ -1,6 +1,9 @@
 import curses
-from defines import (SNAKE_COLOUR, EMPTY_COLOUR, APPLE_COLOUR, TEXT_COLOUR)
 
+EMPTY_COLOUR = 1
+SNAKE_COLOUR = 2
+APPLE_COLOUR = 3
+TEXT_COLOUR = 4
 def init_colours():
     """Sets up colours used by curses to print the board"""
     curses.start_color()
