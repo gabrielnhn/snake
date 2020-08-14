@@ -1,5 +1,5 @@
 from time import sleep
-from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT)
+from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT, wrapper)
 from my_curses import (init_curses, terminate_curses)
 from defines import (SNAKE_CHAR, APPLE_CHAR, REFRESH_TIME, EXIT_KEY,
                      LINES, COLUMNS, GAME_OVER_TIME, GAME_OVER_MESSAGE)
@@ -9,6 +9,7 @@ from apple import Apple
     
 from main_functions import (new_key, column_center, set_board, print_board,
                             new_position, game_over)
+
 
 
 def game(scr):
@@ -59,17 +60,21 @@ def game(scr):
     return score
     
 
+def main(screen):
+# main function:
+    init_curses(screen)
+    height, width = screen.getmaxyx()
 
-# main program:
+    if (height < LINES + 3) or (width < COLUMNS + 1):
+        terminate_curses(screen)
+        print("Terminal too small in order to play the game")
 
-scr = init_curses()
-height, width = scr.getmaxyx()
+    else:
+        score = game(screen)
+        terminate_curses(screen)
+        print("Score: {}".format(score))
 
-if (height < LINES + 3) or (width < COLUMNS + 1):
-    terminate_curses(scr)
-    print("Terminal too small in order to play the game")
-
-else:
-    score = game(scr)
-    terminate_curses(scr)
-    print("Score: {}".format(score))
+# calling the main function through wrapper, to avoid curses bugs
+wrapper(main)
+# wrapper calls the main function and gives it the argument curses.initscr()
+# and if something happens during runtime, the terminal will be restored.

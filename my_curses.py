@@ -16,12 +16,11 @@ def init_colors():
     curses.init_pair(APPLE_COLOR_ID, APPLE_COLOR, -1)
     curses.init_pair(TEXT_COLOR_ID, TEXT_COLOR, -1)
 
-def init_curses():
+def init_curses(scr):
     """
     Initializes functionalities from curses module
     Returns curses.initscr()
     """
-    scr = curses.initscr()
     init_colors()
     curses.noecho()
     curses.cbreak()
