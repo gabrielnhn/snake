@@ -62,6 +62,8 @@ def game(scr):
 
 def main(screen):
 # main function:
+    global score
+
     init_curses(screen)
     height, width = screen.getmaxyx()
 
@@ -72,9 +74,9 @@ def main(screen):
     else:
         score = game(screen)
         terminate_curses(screen)
-        print("Score: {}".format(score))
 
 # calling the main function through wrapper, to avoid curses bugs
 wrapper(main)
 # wrapper calls the main function and gives it the argument curses.initscr()
 # and if something happens during runtime, the terminal will be restored.
+print("Score: {}".format(score))
