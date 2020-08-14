@@ -1,6 +1,6 @@
 import random
 from board import Board
-from defines import (LINES, COLUMNS, APPLE_CHAR, SNAKE_CHAR)
+from configs import (LINES, COLUMNS, APPLE_CHAR, SNAKE_CHAR)
 
 class Apple:
     def __init__(self):

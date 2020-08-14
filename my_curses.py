@@ -1,5 +1,5 @@
 import curses
-from defines import (EMPTY_COLOR, SNAKE_COLOR, APPLE_COLOR, TEXT_COLOR)
+from configs import (EMPTY_COLOR, SNAKE_COLOR, APPLE_COLOR, TEXT_COLOR)
 
 EMPTY_COLOR_ID = 1
 SNAKE_COLOR_ID = 2

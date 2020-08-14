@@ -1,7 +1,7 @@
 from time import sleep
 from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT, wrapper)
 from my_curses import (init_curses, terminate_curses)
-from defines import (SNAKE_CHAR, APPLE_CHAR, REFRESH_TIME, EXIT_KEY,
+from configs import (SNAKE_CHAR, APPLE_CHAR, REFRESH_TIME, EXIT_KEY,
                      LINES, COLUMNS, GAME_OVER_TIME, GAME_OVER_MESSAGE)
 from board import Board
 from snake import Snake

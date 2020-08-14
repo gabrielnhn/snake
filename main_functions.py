@@ -3,7 +3,7 @@ import curses
 from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT)
 from my_curses import (init_curses, terminate_curses,
                        SNAKE_COLOR_ID, APPLE_COLOR_ID, EMPTY_COLOR_ID, TEXT_COLOR_ID)
-from defines import (SNAKE_CHAR, APPLE_CHAR, REFRESH_TIME, EXIT_KEY, LINES,
+from configs import (SNAKE_CHAR, APPLE_CHAR, REFRESH_TIME, EXIT_KEY, LINES,
                      COLUMNS, GAME_OVER_TIME, GAME_OVER_MESSAGE)
 from board import Board
 from snake import Snake

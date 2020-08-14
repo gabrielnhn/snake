@@ -1,4 +1,4 @@
-from defines import (LINES, COLUMNS, INITIAL_SIZE)
+from configs import (LINES, COLUMNS, INITIAL_SIZE)
 
 class Snake:
     def __init__(self):

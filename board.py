@@ -1,4 +1,4 @@
-from defines import (LINES, COLUMNS, EMPTY_CHAR)
+from configs import (LINES, COLUMNS, EMPTY_CHAR)
 import curses
 
 class Board:
