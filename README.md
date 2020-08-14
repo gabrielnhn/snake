@@ -9,7 +9,7 @@
 <h4>board.py:</h4>
 <p>Defines Board class and methods</p>
 
-<h4>defines.py:</h4>
+<h4>configs.py:</h4>
 <p>Used to change game settings</p>
 
 <h4>game.py:</h4>
