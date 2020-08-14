@@ -1,3 +1,12 @@
+"""
+Snake game written in Python!
+Uses 'curses' module to print the board in the terminal.
+
+Written by Gabriel Nascarella Hishida.
+Star the repository if you enjoy it!
+Feel free to send any feedback.
+"""
+
 from time import sleep
 from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT, wrapper)
 from my_curses import (init_curses, terminate_curses)
@@ -6,10 +15,8 @@ from configs import (SNAKE_CHAR, APPLE_CHAR, REFRESH_TIME, EXIT_KEY,
 from board import Board
 from snake import Snake
 from apple import Apple
-    
 from main_functions import (new_key, column_center, set_board, print_board,
                             new_position, game_over)
-
 
 
 def game(scr):
