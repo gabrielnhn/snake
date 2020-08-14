@@ -13,6 +13,11 @@ from main_functions import (new_key, column_center, set_board, print_board,
 
 
 def game(scr):
+    """
+    Main function used to run the game
+    Takes curses.initscr() as input
+    Returns total game score
+    """
 
     # setup:
     score = 0
@@ -61,7 +66,11 @@ def game(scr):
     
 
 def main(screen):
-# main function:
+    """
+    Main program called by wrapper
+    Decides whether to run the game or not, according to terminal size
+    Takes curses.initscr() as input
+    """
     global score
 
     init_curses(screen)
