@@ -18,8 +18,8 @@ def init_colors():
 
 def init_curses(scr):
     """
-    Initializes functionalities from curses module
-    Returns curses.initscr()
+    Initializes functionalities from curses module.
+    Takes curses.initscr() as input.
     """
     init_colors()
     curses.noecho()
@@ -27,7 +27,6 @@ def init_curses(scr):
     scr.nodelay(True)
     scr.keypad(True)
     curses.curs_set(0)
-    return scr
 
 
 def terminate_curses(scr):
