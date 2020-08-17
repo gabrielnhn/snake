@@ -85,14 +85,18 @@ def main(screen):
 
     if (height < LINES + 3) or (width < COLUMNS + 1):
         terminate_curses(screen)
-        print("Terminal too small in order to play the game")
+        score = -1
 
     else:
         score = game(screen)
         terminate_curses(screen)
+    
 
 # calling the main function through wrapper, to avoid curses bugs
 wrapper(main)
 # wrapper calls the main function and gives it the argument curses.initscr()
 # and if something happens during runtime, the terminal will be restored.
-print("Score: {}".format(score))
+if score >= 0:
+    print("Score: {}".format(score))
+else:
+    print("Screen too small to run the game")
