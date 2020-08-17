@@ -8,7 +8,6 @@ from configs import (SNAKE_CHAR, APPLE_CHAR, REFRESH_TIME, EXIT_KEY, LINES,
 from board import Board
 from snake import Snake
 from apple import Apple
-
 # structures used by function new_key:
 opposite = {KEY_DOWN: KEY_UP, KEY_UP: KEY_DOWN,
             KEY_LEFT: KEY_RIGHT, KEY_RIGHT: KEY_LEFT}
@@ -20,10 +19,20 @@ def new_key(scr, old_key):
     """
     Returns the keyboard key the loop will process,
     according to the current 'getch()' input or old key.
+    Also flushes input stream if gets the same key twice
     """
     new_value = scr.getch()
-    if (new_value == -1) or (new_value == opposite[old_key]) or (
+
+    if new_value == old_key: 
+        curses.flushinp()
+        return old_key
+    
+    elif (new_value == -1) or (new_value == opposite[old_key]) or (
     (new_value not in arrow_keys) and (chr(new_value) != EXIT_KEY)):
+    # if there's no new input (-1)
+    # or it's the opposite direction to where the snake was going
+    # or it's not an arrow key but, in fact, the EXIT_KEY:
+
         return old_key
     else:
         return new_value
