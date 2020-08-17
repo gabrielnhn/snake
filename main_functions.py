@@ -7,6 +7,7 @@ from configs import (REFRESH_TIME, GAME_OVER_TIME, GAME_OVER_MESSAGE)
 from board import Board, Empty
 from snake import Snake
 from apple import Apple
+
 # structures used by function new_key:
 opposite = {KEY_DOWN: KEY_UP, KEY_UP: KEY_DOWN,
             KEY_LEFT: KEY_RIGHT, KEY_RIGHT: KEY_LEFT}
