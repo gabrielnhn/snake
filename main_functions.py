@@ -29,9 +29,9 @@ def new_key(scr, old_key):
     
     elif (new_value == -1) or (new_value == opposite[old_key]) or (
     new_value not in arrow_keys):
-    # if there's no new input (-1)
-    # or it's the opposite direction to where the snake was going
-    # or it's not an arrow key
+        # if there's no new input (-1)
+        # or it's the opposite direction to where the snake was going
+        # or it's not an arrow key
 
         return old_key
     else:
