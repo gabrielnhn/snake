@@ -81,15 +81,15 @@ def main(screen):
     global score
 
     init_curses(screen)
+
     height, width = screen.getmaxyx()
-
     if (height < LINES + 3) or (width < COLUMNS + 1):
-        terminate_curses(screen)
+    # The game won't fit in the standard screen
         score = -1
-
     else:
         score = game(screen)
-        terminate_curses(screen)
+    
+    terminate_curses(screen)
     
 
 # calling the main function through wrapper, to avoid curses bugs
