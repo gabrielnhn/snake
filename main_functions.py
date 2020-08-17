@@ -1,11 +1,10 @@
 from time import sleep
 import curses
 from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT)
-from my_curses import (init_curses, terminate_curses,
-                       SNAKE_COLOR_ID, APPLE_COLOR_ID, EMPTY_COLOR_ID, TEXT_COLOR_ID)
-from configs import (SNAKE_CHAR, APPLE_CHAR, REFRESH_TIME, EXIT_KEY, LINES,
-                     COLUMNS, GAME_OVER_TIME, GAME_OVER_MESSAGE)
-from board import Board
+from my_curses import (init_curses, terminate_curses, 
+                       EMPTY_COLOR_ID, TEXT_COLOR_ID)
+from configs import (REFRESH_TIME, GAME_OVER_TIME, GAME_OVER_MESSAGE)
+from board import Board, Empty
 from snake import Snake
 from apple import Apple
 # structures used by function new_key:
@@ -17,9 +16,9 @@ arrow_keys = opposite.keys()
 
 def new_key(scr, old_key):
     """
-    Returns the keyboard key the loop will process,
+    Return the keyboard key the loop will process,
     according to the current 'getch()' input or old key.
-    Also flushes input stream if gets the same key twice
+    Also flush input stream if get the same key twice
     """
     new_value = scr.getch()
 
@@ -28,60 +27,53 @@ def new_key(scr, old_key):
         return old_key
     
     elif (new_value == -1) or (new_value == opposite[old_key]) or (
-    (new_value not in arrow_keys) and (chr(new_value) != EXIT_KEY)):
+    new_value not in arrow_keys):
     # if there's no new input (-1)
     # or it's the opposite direction to where the snake was going
-    # or it's not an arrow key but, in fact, the EXIT_KEY:
+    # or it's not an arrow key
 
         return old_key
     else:
         return new_value
 
-def set_board(board, snake, apple):
-    """
-    Sets up the new board to match the coordinates
-    of the apple and the snake.
-    """
-    board.set_coord(apple.line, apple.column, APPLE_CHAR)
-    for i, j in snake.coords:
-        board.set_coord(i, j, SNAKE_CHAR)
 
-def column_center(text):
+def column_center(columns, text):
     """
     When printing 'text', use this function to center it
     relatively to the board.
     """
-    return (COLUMNS // 2) + (len(text) // 2) - 1
+    return (columns // 2) + (len(text) // 2) - 1
 
+def set_board(board, snake, apple):
+    """
+    Set up the new board to match the coordinates
+    of the apple and the snake.
+    """
+    board.set_coord(apple.line, apple.column, apple)
+    for i, j in snake.coords:
+        board.set_coord(i, j, snake)
 
 def print_board(scr, board, score):
     """
-    Prints every value in the board,
+    Print every value in the board,
     matching each of them with its color.
-    Also prints the current score
+    Also print the current score
     """
     scr.erase()
-    for line_number, board_line in enumerate(board.as_list(), start=0):
+    for line_index, board_line in enumerate(board.as_list(), start=0):
         column = 0
-        for char in board_line.split():
-            if char == SNAKE_CHAR:
-                scr.addstr(line_number, column, char, curses.color_pair(SNAKE_COLOR_ID))
-            elif char == APPLE_CHAR:
-                scr.addstr(line_number, column, char, curses.color_pair(APPLE_COLOR_ID))
-            else:
-                scr.addstr(line_number, column, char, curses.color_pair(EMPTY_COLOR_ID))
+        for item in board_line:
+            scr.addstr(line_index, column, str(item), curses.color_pair(item.color))
             column += 2
     
-
-
     text = "SCORE: {}".format(score)
-    scr.addstr(LINES + 1, column_center(text) + 1, text, TEXT_COLOR_ID)
+    scr.addstr(board.lines + 1, column_center(board.columns, text) + 1, text, TEXT_COLOR_ID)
     scr.refresh()
 
 
-def new_position(snake, key):
+def new_position(board, snake, key):
     """
-    Returns the next coordinates the snake will be
+    Return the next coordinates the snake will be
     when following the direction pointed by 'key'
     """
     i, j = snake.get_head()
@@ -95,14 +87,14 @@ def new_position(snake, key):
     elif key == KEY_DOWN:
         i += 1
     
-    return (i % LINES, j % COLUMNS)
+    return (i % board.lines, j % board.columns)
 
-def game_over(scr):
+def game_over(scr, board):
     """
-    The game is finished. Prints GAME_OVER_MESSAGE
+    The game is finished. Print GAME_OVER_MESSAGE
     for GAME_OVER_TIME at the center of the screen
     """
-    scr.addstr(LINES + 2, column_center(GAME_OVER_MESSAGE),
+    scr.addstr(board.lines + 2, column_center(board.columns, GAME_OVER_MESSAGE),
     GAME_OVER_MESSAGE, TEXT_COLOR_ID)
     scr.refresh()
     sleep(GAME_OVER_TIME)

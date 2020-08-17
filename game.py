@@ -9,8 +9,8 @@ Feel free to send any feedback.
 
 from time import sleep
 from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT, wrapper)
-from my_curses import (init_curses, terminate_curses)
-from configs import (SNAKE_CHAR, APPLE_CHAR, REFRESH_TIME, EXIT_KEY,
+from my_curses import (init_curses, terminate_curses, SNAKE_COLOR_ID, APPLE_COLOR_ID)
+from configs import (INITIAL_SIZE, SNAKE_CHAR, APPLE_CHAR, REFRESH_TIME,
                      LINES, COLUMNS, GAME_OVER_TIME, GAME_OVER_MESSAGE)
 from board import Board
 from snake import Snake
@@ -19,54 +19,53 @@ from main_functions import (new_key, column_center, set_board, print_board,
                             new_position, game_over)
 
 
-def game(scr):
+def game(scr, board, snake, apple):
     """
     Main function used to run the game
-    Takes curses.initscr() as input
-    Returns total game score
+    Take curses.initscr() as input
+    Return total game score
     """
 
     # setup:
     score = 0
-    snake = Snake()
-    apple = Apple()
     key = KEY_RIGHT
 
     # game loop:
     while True:    
-        # print screen
-        board = Board()
-        set_board(board, snake, apple)
-        print_board(scr, board, score)
-        sleep(REFRESH_TIME)
+        try:
+            # print screen
+            board.clear()
+            set_board(board, snake, apple)
+            print_board(scr, board, score)
+            sleep(REFRESH_TIME)
 
-        # process new input
-        key = new_key(scr, key)
-        if chr(key) == EXIT_KEY:
+            # process new input
+            key = new_key(scr, key)
+
+            # process new game state:
+            # get next position
+            i, j = new_position(board, snake, key)
+
+            new_position_char = str(board.get_coord(i, j))
+
+            # check new position
+            if new_position_char == apple.char:
+                # eat apple:
+                snake.grow_to(i, j)
+                score += 1
+            elif new_position_char == snake.char:
+                # bumped into itself:
+                game_over(scr, board)
+                break
+            else:
+                # empty space:
+                snake.move_to(i, j)
+
+            # check if apple was eaten:
+            apple.check(board)
+
+        except KeyboardInterrupt:
             break
-
-        # process new game state:
-        # get next position
-        i, j = new_position(snake, key)
-
-        new_position_char = board.get_coord(i, j)
-
-        # check new position
-        if new_position_char == APPLE_CHAR:
-            # eat apple:
-            snake.increase_to(i, j)
-            score += 1
-        elif new_position_char == SNAKE_CHAR:
-            # bumped into itself:
-            game_over(scr)
-            break
-        else:
-            # empty space:
-            snake.move_to(i, j)
-
-        # check if apple was eaten:
-        apple.check(board)
-
     
     # return total score:
     return score
@@ -75,8 +74,8 @@ def game(scr):
 def main(screen):
     """
     Main program called by wrapper
-    Decides whether to run the game or not, according to terminal size
-    Takes curses.initscr() as input
+    Decide whether to run the game or not, according to terminal size
+    Take curses.initscr() as input
     """
     global score
 
@@ -86,8 +85,13 @@ def main(screen):
     if (height < LINES + 3) or (width < COLUMNS + 1):
     # The game won't fit in the standard screen
         score = -1
+
     else:
-        score = game(screen)
+        board = Board(LINES, COLUMNS)
+        snake =  Snake(INITIAL_SIZE, board.lines, board.columns, SNAKE_CHAR, SNAKE_COLOR_ID)
+        apple = Apple(*board.free_random_coord(), APPLE_CHAR, APPLE_COLOR_ID)
+
+        score = game(screen, board, snake, apple)
     
     terminate_curses(screen)
     
