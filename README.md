@@ -4,10 +4,10 @@
 <h3>Description:</h3>
 
 <h4>apple.py:</h4>
-<p>Defines Apple class and methods</p>
+<p>Apple class and methods</p>
 
 <h4>board.py:</h4>
-<p>Defines Board class and methods</p>
+<p>Board class and methods</p>
 
 <h4>configs.py:</h4>
 <p>Used to change game settings</p>
@@ -16,10 +16,10 @@
 <p>(Main file) Used to run the game</p> 
 
 <h4>main_functions.py:</h4>
-<p>Defines all major functions used in the program</p>
+<p>All major functions used in the program</p>
 
 <h4>my_curses.py:</h4>
-<p>Module used to initialize and terminate 'curses' module</p>
+<p>Used to initialize and terminate 'curses' module</p>
 
 <h4>snake.py:</h4>
-<p>Defines Snake class and methods</p>
+<p>Snake class and methods</p>
