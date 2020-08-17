@@ -65,6 +65,7 @@ def game(scr, board, snake, apple):
             apple.check(board)
 
         except KeyboardInterrupt:
+            # close the game
             break
     
     # return total score:
@@ -87,10 +88,12 @@ def main(screen):
         score = -1
 
     else:
+        # set up structures
         board = Board(LINES, COLUMNS)
         snake =  Snake(INITIAL_SIZE, board.lines, board.columns, SNAKE_CHAR, SNAKE_COLOR_ID)
         apple = Apple(*board.free_random_coord(), APPLE_CHAR, APPLE_COLOR_ID)
-
+        
+        # run the game
         score = game(screen, board, snake, apple)
     
     terminate_curses(screen)
