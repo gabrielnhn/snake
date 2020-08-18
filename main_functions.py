@@ -1,10 +1,9 @@
 from time import sleep
 import curses
 from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT)
-from my_curses import (init_curses, terminate_curses, 
-                       EMPTY_COLOR_ID, TEXT_COLOR_ID)
-from configs import (REFRESH_TIME, GAME_OVER_TIME, GAME_OVER_MESSAGE)
-from board import Board, Empty
+from my_curses import (TEXT_COLOR_ID)
+from configs import (GAME_OVER_TIME, GAME_OVER_MESSAGE)
+from board import Board
 from snake import Snake
 from apple import Apple
 
@@ -62,17 +61,17 @@ def print_board(scr, board, score):
     """
     scr.erase()
     for line_index, board_line in enumerate(board.as_list(), start=0):
-        column = 0
+        column_index = 0
         for item in board_line:
-            scr.addstr(line_index, column, str(item), curses.color_pair(item.color))
-            column += 2
+            scr.addstr(line_index, column_index, str(item), curses.color_pair(item.color))
+            column_index += 2
     
     text = "SCORE: {}".format(score)
     scr.addstr(board.lines + 1, column_center(board.columns, text) + 1, text, TEXT_COLOR_ID)
     scr.refresh()
 
 
-def new_position(board, snake, key):
+def next_coord(board, snake, key):
     """
     Return the next coordinates the snake will be
     when following the direction pointed by 'key'
@@ -93,7 +92,7 @@ def new_position(board, snake, key):
 def game_over(scr, board):
     """
     The game is finished. Print GAME_OVER_MESSAGE
-    for GAME_OVER_TIME at the center of the screen
+    for GAME_OVER_TIME seconds in the center of the screen
     """
     scr.addstr(board.lines + 2, column_center(board.columns, GAME_OVER_MESSAGE),
     GAME_OVER_MESSAGE, TEXT_COLOR_ID)

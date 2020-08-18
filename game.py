@@ -9,15 +9,15 @@ Feel free to send any feedback.
 
 from time import sleep
 from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT, wrapper)
-from my_curses import (init_curses, terminate_curses, SNAKE_COLOR_ID, APPLE_COLOR_ID)
-from configs import (INITIAL_SIZE, SNAKE_CHAR, APPLE_CHAR, REFRESH_TIME,
-                     LINES, COLUMNS, GAME_OVER_TIME, GAME_OVER_MESSAGE)
+from my_curses import (init_curses, terminate_curses,
+                       SNAKE_COLOR_ID, APPLE_COLOR_ID)
+from configs import (INITIAL_SIZE, SNAKE_CHAR, APPLE_CHAR,
+                     REFRESH_TIME, LINES, COLUMNS)
 from board import Board
 from snake import Snake
 from apple import Apple
-from main_functions import (new_key, column_center, set_board, print_board,
-                            new_position, game_over)
-
+from main_functions import (new_key, column_center, set_board,
+                            print_board, next_coord, game_over)
 
 def game(scr, board, snake, apple):
     """
@@ -44,16 +44,16 @@ def game(scr, board, snake, apple):
 
             # process new game state:
             # get next position
-            i, j = new_position(board, snake, key)
+            i, j = next_coord(board, snake, key)
 
-            new_position_char = str(board.get_coord(i, j))
+            next_coord_char = str(board.get_coord(i, j))
 
             # check new position
-            if new_position_char == apple.char:
+            if next_coord_char == apple.char:
                 # eat apple:
                 snake.grow_to(i, j)
                 score += 1
-            elif new_position_char == snake.char:
+            elif next_coord_char == snake.char:
                 # bumped into itself:
                 game_over(scr, board)
                 break
@@ -65,7 +65,7 @@ def game(scr, board, snake, apple):
             apple.check(board)
 
         except KeyboardInterrupt:
-            # close the game
+            # stop the game
             break
     
     # return total score:

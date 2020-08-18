@@ -2,9 +2,8 @@ from configs import (EMPTY_CHAR, EMPTY_COLOR)
 import random
 
 class Empty:
-    def __init__(self):
-        self.char = EMPTY_CHAR
-        self.color = EMPTY_COLOR
+    char = EMPTY_CHAR
+    color = EMPTY_COLOR
 
     def __repr__(self):
         return self.char
@@ -40,13 +39,13 @@ class Board:
         free_line = random.randrange(self.lines)
         free_column = random.randrange(self.columns)
 
-        if str(self.get_coord(free_line, free_column)) != EMPTY_CHAR:
+        if str(self.get_coord(free_line, free_column)) != Empty.char:
             # if the random coordinate above is not empty,
             # find the next coordinate available
             for _ in range(self.lines):
                 for _ in range(self.columns):
                     free_column = (free_column + 1) % self.columns
-                    if str(self.get_coord(free_line, free_column)) == EMPTY_CHAR:
+                    if str(self.get_coord(free_line, free_column)) == Empty.char:
                         break
                 free_line = (free_line + 1) % self.lines
             
