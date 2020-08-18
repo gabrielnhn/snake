@@ -3,7 +3,7 @@ Snake game written in Python!
 Uses 'curses' module to print the board in the terminal.
 
 Written by Gabriel Nascarella Hishida.
-Star the repository if you enjoy it!
+Star the repository if you like it!
 Feel free to send any feedback.
 """
 
