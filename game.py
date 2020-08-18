@@ -8,8 +8,7 @@ Feel free to send any feedback.
 """
 
 from time import sleep
-from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT)
-import curses
+from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT, wrapper)
 from my_curses import (init_curses, terminate_curses, Color)
 import configs
 from board import Board
@@ -100,7 +99,7 @@ def main(screen):
     
 
 # calling the main function through wrapper, to avoid curses bugs
-curses.wrapper(main)
+wrapper(main)
 # wrapper calls the main function and gives it the argument curses.initscr()
 # and if something happens during runtime, the terminal will be restored.
 if score >= 0:
