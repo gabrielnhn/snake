@@ -4,6 +4,9 @@ class Snake:
         Initializes the snake in the center of the board,
         With an initial 'size'
         """
+        if size > columns:
+            raise ValueError("Snake's size is too large")
+        
         self.coords = [(lines//2 - 1, columns//2 + x - 1) for x in range(-size + 1, 1) ]
         self.char = char
         self.color = color
