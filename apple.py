@@ -9,7 +9,7 @@ class Apple:
         self.color = color
     
     def move(self, board):
-        """If the apple is eaten, move itself to an available coordinate"""
+        """Move itself to an available coordinate of the board"""
         self.line, self.column = board.free_random_coord()
         
     def __repr__(self):
