@@ -1,7 +1,7 @@
 from time import sleep
 import curses
 from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT)
-from my_curses import (TEXT_COLOR_ID)
+from my_curses import (Color)
 from configs import (GAME_OVER_TIME, GAME_OVER_MESSAGE)
 from board import Board
 from snake import Snake
@@ -67,7 +67,7 @@ def print_board(scr, board, score):
             column_index += 2
     
     text = "SCORE: {}".format(score)
-    scr.addstr(board.lines + 1, column_center(board.columns, text) + 1, text, TEXT_COLOR_ID)
+    scr.addstr(board.lines + 1, column_center(board.columns, text) + 1, text, Color.TEXT)
     scr.refresh()
 
 
@@ -95,6 +95,6 @@ def game_over(scr, board):
     for GAME_OVER_TIME seconds in the center of the screen
     """
     scr.addstr(board.lines + 2, column_center(board.columns, GAME_OVER_MESSAGE),
-    GAME_OVER_MESSAGE, TEXT_COLOR_ID)
+    GAME_OVER_MESSAGE, Color.TEXT)
     scr.refresh()
     sleep(GAME_OVER_TIME)

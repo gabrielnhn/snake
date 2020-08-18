@@ -8,11 +8,10 @@ Feel free to send any feedback.
 """
 
 from time import sleep
-from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT, wrapper)
-from my_curses import (init_curses, terminate_curses,
-                       SNAKE_COLOR_ID, APPLE_COLOR_ID)
-from configs import (INITIAL_SIZE, SNAKE_CHAR, APPLE_CHAR,
-                     REFRESH_TIME, LINES, COLUMNS)
+from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT)
+import curses
+from my_curses import (init_curses, terminate_curses, Color)
+import configs
 from board import Board
 from snake import Snake
 from apple import Apple
@@ -37,7 +36,7 @@ def game(scr, board, snake, apple):
             board.clear()
             set_board(board, snake, apple)
             print_board(scr, board, score)
-            sleep(REFRESH_TIME)
+            sleep(configs.REFRESH_TIME)
 
             # process new input
             key = new_key(scr, key)
@@ -83,15 +82,16 @@ def main(screen):
     init_curses(screen)
 
     height, width = screen.getmaxyx()
-    if (height < LINES + 3) or (width < COLUMNS + 1):
-    # The game won't fit in the standard screen
+    if (height < configs.LINES + 3) or (width < configs.COLUMNS + 1):
+        # The game won't fit in the standard screen
         score = -1
 
     else:
         # set up structures
-        board = Board(LINES, COLUMNS)
-        snake =  Snake(INITIAL_SIZE, board.lines, board.columns, SNAKE_CHAR, SNAKE_COLOR_ID)
-        apple = Apple(*board.free_random_coord(), APPLE_CHAR, APPLE_COLOR_ID)
+        board = Board(configs.LINES, configs.COLUMNS)
+        snake =  Snake(configs.INITIAL_SIZE, board.lines, board.columns,
+                       configs.SNAKE_CHAR, Color.SNAKE)
+        apple = Apple(*board.free_random_coord(), configs.APPLE_CHAR, Color.APPLE)
         
         # run the game
         score = game(screen, board, snake, apple)
@@ -100,7 +100,7 @@ def main(screen):
     
 
 # calling the main function through wrapper, to avoid curses bugs
-wrapper(main)
+curses.wrapper(main)
 # wrapper calls the main function and gives it the argument curses.initscr()
 # and if something happens during runtime, the terminal will be restored.
 if score >= 0:
