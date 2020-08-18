@@ -55,7 +55,7 @@ class Board:
 
     def as_list(self):
         """Return its data as a list of lists."""
-        return self.data
+        return list(self.data)
 
     def __str__(self):
         """Return its data as a string."""
