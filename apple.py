@@ -1,5 +1,4 @@
 import random
-from board import Board
 
 class Apple:
     def __init__(self, line, column, char, color):
@@ -8,9 +7,10 @@ class Apple:
         self.char = char
         self.color = color
     
-    def move(self, board):
-        """Move itself to an available coordinate of the board"""
-        self.line, self.column = board.free_random_coord()
+    def move(self, new_line, new_column):
+        """Move itself to new coordinates"""
+        self.line = new_line
+        self.column = new_column
         
     def __repr__(self):
         return self.char

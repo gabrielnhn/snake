@@ -50,7 +50,7 @@ def game(scr, board, snake, apple):
             if next_coord_char == apple.char:
                 # eat apple:
                 snake.grow_to(i, j)
-                apple.move(board)
+                apple.move(board.free_random_coord())
                 score += 1
             elif next_coord_char == snake.char:
                 # bumped into itself:
