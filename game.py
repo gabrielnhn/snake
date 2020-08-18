@@ -41,15 +41,16 @@ def game(scr, board, snake, apple):
             key = new_key(scr, key)
 
             # process new game state:
-            # get next position
+            # get the next position of the snake
             i, j = next_coord(board, snake, key)
 
             next_coord_char = str(board.get_coord(i, j))
 
-            # check new position
+            # check the new position
             if next_coord_char == apple.char:
                 # eat apple:
                 snake.grow_to(i, j)
+                apple.move(board)
                 score += 1
             elif next_coord_char == snake.char:
                 # bumped into itself:
@@ -58,9 +59,6 @@ def game(scr, board, snake, apple):
             else:
                 # empty space:
                 snake.move_to(i, j)
-
-            # check if apple was eaten:
-            apple.check(board)
 
         except KeyboardInterrupt:
             # stop the game
