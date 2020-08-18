@@ -7,7 +7,6 @@ class Color:
     APPLE = 3
     TEXT = 4
 
-
 def init_colors():
     """Sets up colors used by curses to print the board"""
     curses.start_color()

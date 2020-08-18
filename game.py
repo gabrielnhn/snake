@@ -14,8 +14,8 @@ import configs
 from board import Board
 from snake import Snake
 from apple import Apple
-from main_functions import (new_key, column_center, set_board,
-                            print_board, next_coord, game_over)
+from main_functions import (new_key, set_board, print_board,
+                            next_coord, game_over)
 
 def game(scr, board, snake, apple):
     """

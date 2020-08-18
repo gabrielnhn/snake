@@ -1,7 +1,7 @@
 from time import sleep
 import curses
 from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT)
-from my_curses import (Color)
+from my_curses import Color
 from configs import (GAME_OVER_TIME, GAME_OVER_MESSAGE)
 from board import Board
 from snake import Snake
@@ -39,8 +39,8 @@ def new_key(scr, old_key):
 
 def column_center(columns, text):
     """
-    When printing 'text', use this function to center it
-    relatively to the board.
+    When printing 'text', use this function to get the coordinates
+    to print it in the center of the board.
     """
     return (columns // 2) + (len(text) // 2) - 1
 
