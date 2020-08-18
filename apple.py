@@ -1,5 +1,3 @@
-import random
-
 class Apple:
     def __init__(self, line, column, char, color):
         self.line = line
