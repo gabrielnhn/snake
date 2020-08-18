@@ -22,17 +22,17 @@ def new_key(scr, old_key):
     Also flush input stream if get the same key twice
     """
     new_value = scr.getch()
-
-    if new_value == old_key: 
-        curses.flushinp()
-        return old_key
     
-    elif (new_value == -1) or (new_value == opposite[old_key]) or (
-    new_value not in arrow_keys):
+    if (new_value == -1) or (
+        new_value == old_key) or (
+        new_value == opposite[old_key]) or (
+        new_value not in arrow_keys):
         # if there's no new input (-1)
+        # or it's the same value of the old key
         # or it's the opposite direction to where the snake was going
         # or it's not an arrow key
 
+        curses.flushinp()
         return old_key
     else:
         return new_value
