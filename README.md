@@ -7,7 +7,7 @@
 <p>Apple class and methods</p>
 
 <h4>board.py:</h4>
-<p>Board class and methods</p>
+<p>Board and Empty classes and methods</p>
 
 <h4>configs.py:</h4>
 <p>Used to change game settings</p>
@@ -19,7 +19,7 @@
 <p>All major functions used in the program</p>
 
 <h4>my_curses.py:</h4>
-<p>Used to initialize and terminate 'curses' module</p>
+<p>Used to initialize and terminate colors and 'curses' module</p>
 
 <h4>snake.py:</h4>
 <p>Snake class and methods</p>
