@@ -75,6 +75,8 @@ def main(screen):
     Take curses.initscr() as input
     """
     global score
+    # score will be used like
+    # a return value of main()
 
     init_curses(screen)
 
