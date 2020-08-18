@@ -1,18 +1,45 @@
 from time import sleep
 import curses
-from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT)
+from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT,
+                    COLOR_BLACK, COLOR_BLUE, COLOR_CYAN, COLOR_GREEN,
+                    COLOR_MAGENTA, COLOR_RED, COLOR_WHITE, COLOR_YELLOW)
 from my_curses import Color
-from configs import (GAME_OVER_TIME, GAME_OVER_MESSAGE)
 from board import Board
 from snake import Snake
 from apple import Apple
+import configs
+
+def parse_configs():
+    """Check if configs are valid"""
+    try:
+        if (configs.LINES < 1) or (configs.COLUMNS < 1):
+            raise ValueError('Invalid size')
+
+        elif (configs.APPLE_CHAR == configs.SNAKE_CHAR) or (
+            configs.EMPTY_CHAR == configs.SNAKE_CHAR) or (
+            configs.APPLE_CHAR == configs.EMPTY_CHAR):
+            raise ValueError('Invalid chars')        
+        
+        elif configs.REFRESH_TIME <= 0:
+            raise ValueError('Invalid time')
+
+        available_colors = (COLOR_BLACK, COLOR_BLUE, COLOR_CYAN, COLOR_GREEN,
+        COLOR_MAGENTA, COLOR_RED, COLOR_WHITE, COLOR_YELLOW)
+
+        if (configs.APPLE_COLOR not in available_colors) or (
+            configs.SNAKE_COLOR not in available_colors) or (
+            configs.EMPTY_COLOR not in available_colors) or (
+            configs.TEXT_COLOR not in available_colors):
+            raise ValueError('Invalid color')
+
+    except:
+        raise Exception('Missing configs')
+
 
 # structures used by function new_key:
 opposite = {KEY_DOWN: KEY_UP, KEY_UP: KEY_DOWN,
             KEY_LEFT: KEY_RIGHT, KEY_RIGHT: KEY_LEFT}
-    # stores the opposite key for each arrow key
 arrow_keys = opposite.keys()
-    # stores arrow keys
 
 def new_key(scr, old_key):
     """
@@ -94,6 +121,9 @@ def game_over(scr, board):
     The game is finished. Print GAME_OVER_MESSAGE
     for GAME_OVER_TIME seconds in the center of the screen
     """
+    GAME_OVER_TIME = 3 # seconds
+    GAME_OVER_MESSAGE = "GAME OVER!"
+
     scr.addstr(board.lines + 2, column_center(board.columns, GAME_OVER_MESSAGE),
     GAME_OVER_MESSAGE, Color.TEXT)
     scr.refresh()

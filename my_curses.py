@@ -13,13 +13,11 @@ def init_colors():
     curses.use_default_colors()
     # ID, Foreground, Background
     # Background = -1 -> Keeps the default terminal background
-    try:
-        curses.init_pair(Color.EMPTY, EMPTY_COLOR, -1)
-        curses.init_pair(Color.SNAKE, SNAKE_COLOR, -1)
-        curses.init_pair(Color.APPLE, APPLE_COLOR, -1)
-        curses.init_pair(Color.TEXT, TEXT_COLOR, -1)
-    except:
-        raise ValueError('Invalid Color')
+    curses.init_pair(Color.EMPTY, EMPTY_COLOR, -1)
+    curses.init_pair(Color.SNAKE, SNAKE_COLOR, -1)
+    curses.init_pair(Color.APPLE, APPLE_COLOR, -1)
+    curses.init_pair(Color.TEXT, TEXT_COLOR, -1)
+
 
 def init_curses(scr):
     """

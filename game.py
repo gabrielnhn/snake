@@ -15,7 +15,7 @@ from board import Board
 from snake import Snake
 from apple import Apple
 from main_functions import (new_key, set_board, print_board,
-                            next_coord, game_over)
+                            next_coord, game_over, parse_configs)
 
 def game(scr, board, snake, apple):
     """
@@ -77,6 +77,8 @@ def main(screen):
     global score
     # score will be used like
     # a return value of main()
+
+    parse_configs()
 
     init_curses(screen)
 
