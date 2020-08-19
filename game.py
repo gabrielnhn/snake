@@ -7,9 +7,9 @@ Star the repository if you like it!
 Feel free to send any feedback.
 """
 
-import configs
 from main_functions import (new_key, set_board, print_board,
                             next_coord, game_over, parse_configs)
+import configs
 
 parse_configs()
 

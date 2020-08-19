@@ -25,6 +25,7 @@ def parse_configs():
     except:
         raise Exception('Missing configs') from None
 
+
 from time import sleep
 import curses
 from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT,
