@@ -7,15 +7,18 @@ Star the repository if you like it!
 Feel free to send any feedback.
 """
 
+import configs
+from main_functions import (new_key, set_board, print_board,
+                            next_coord, game_over, parse_configs)
+
+parse_configs()
+
 from time import sleep
 from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT, wrapper)
 from my_curses import (init_curses, terminate_curses, Color)
-import configs
 from board import Board
 from snake import Snake
 from apple import Apple
-from main_functions import (new_key, set_board, print_board,
-                            next_coord, game_over, parse_configs)
 
 def game(scr, board, snake, apple):
     """
@@ -77,8 +80,6 @@ def main(screen):
     global score
     # score will be used like
     # a return value of main()
-
-    parse_configs()
 
     init_curses(screen)
 

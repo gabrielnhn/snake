@@ -1,14 +1,4 @@
-from time import sleep
-import curses
-from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT,
-                    COLOR_BLACK, COLOR_BLUE, COLOR_CYAN, COLOR_GREEN,
-                    COLOR_MAGENTA, COLOR_RED, COLOR_WHITE, COLOR_YELLOW)
-from my_curses import Color
-from board import Board
-from snake import Snake
-from apple import Apple
 import configs
-
 def parse_configs():
     """Check if configs are valid"""
     try:
@@ -33,7 +23,17 @@ def parse_configs():
             raise ValueError('Invalid color')
 
     except:
-        raise Exception('Missing configs')
+        raise Exception('Missing configs') from None
+
+from time import sleep
+import curses
+from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT,
+                    COLOR_BLACK, COLOR_BLUE, COLOR_CYAN, COLOR_GREEN,
+                    COLOR_MAGENTA, COLOR_RED, COLOR_WHITE, COLOR_YELLOW)
+from my_curses import Color
+from board import Board
+from snake import Snake
+from apple import Apple
 
 
 # structures used by function new_key:
