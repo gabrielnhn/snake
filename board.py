@@ -43,12 +43,16 @@ class Board:
 
         if str(self.get_coord(free_line, free_column)) != Empty.char:
             # if the random coordinate above is not empty,
-            # find the next coordinate available
+            # find the next available coordinate
             for _ in range(self.lines):
+                available = False
                 for _ in range(self.columns):
                     free_column = (free_column + 1) % self.columns
                     if str(self.get_coord(free_line, free_column)) == Empty.char:
+                        available = True
                         break
+                if available:
+                    break
                 free_line = (free_line + 1) % self.lines
             
         return free_line, free_column
