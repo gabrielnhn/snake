@@ -1,16 +1,19 @@
 """
-Snake game written in Python!
-Uses 'curses' module to print the board in the terminal.
+Snake game written in Python,
+using 'curses' module to print the board in the terminal.
 
-Written by Gabriel Nascarella Hishida.
+Execute this file to run the game.
+
+Written by Gabriel Hishida.
+
 Star the repository if you like it!
 Feel free to send any feedback.
 """
 
 from main_functions import (new_key, set_board, print_board,
                             next_coord, game_over, parse_configs)
-import configs
 
+import configs
 parse_configs()
 
 from time import sleep
