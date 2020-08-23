@@ -1,4 +1,5 @@
-"""Board and Empty classes and methods implementation"""
+"""Board and Empty classes and methods implementation:"""
+
 from configs import (EMPTY_CHAR, EMPTY_COLOR)
 import random
 

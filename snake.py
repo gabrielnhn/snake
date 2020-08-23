@@ -1,3 +1,5 @@
+"""Snake class and methods implementation:"""
+
 class Snake:
     def __init__(self, size, lines, columns, char, color):
         """
