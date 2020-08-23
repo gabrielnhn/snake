@@ -3,7 +3,7 @@
 
 <h3>Running the game:</h3>
 
-<h4>Install curses.py</h4>
+<h4>Install curses.py:</h4>
 <p>Check whether 'curses' module is installed.</p>
 
 <h4>Edit configs.py:</h4>
