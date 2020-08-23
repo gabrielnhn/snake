@@ -1,4 +1,4 @@
-<h1>Snake written in Python:</h1>
+<h1>Snake game written in Python:</h1>
 <h3>Uses 'curses' module to print the board in the terminal</h3>
 
 <h3>Running the game:</h3>
