@@ -1,4 +1,5 @@
-# Change the game settings here!
+# Change the game settings:
+
 # Available colors:
 from curses import (COLOR_BLACK, COLOR_BLUE, COLOR_CYAN, COLOR_GREEN,
                     COLOR_MAGENTA, COLOR_RED, COLOR_WHITE, COLOR_YELLOW)
