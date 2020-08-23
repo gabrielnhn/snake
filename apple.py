@@ -1,3 +1,4 @@
+"""Apple class and methods implementation"""
 class Apple:
     def __init__(self, line, column, char, color):
         self.line = line
