@@ -1,3 +1,4 @@
+"""Module used to initialize and terminate colors and 'curses' module"""
 import curses
 from configs import (EMPTY_COLOR, SNAKE_COLOR, APPLE_COLOR, TEXT_COLOR)
 
