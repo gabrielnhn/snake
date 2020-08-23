@@ -2,7 +2,7 @@
 
 import configs
 def parse_configs():
-    """Check if configs are valid"""
+    """Check whether the settings are valid"""
     try:
         if (configs.LINES < 1) or (configs.COLUMNS < 1):
             raise ValueError('Invalid size')
