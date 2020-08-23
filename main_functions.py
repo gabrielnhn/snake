@@ -1,3 +1,5 @@
+"""All major functions used in the program are defined here"""
+
 import configs
 def parse_configs():
     """Check if configs are valid"""
