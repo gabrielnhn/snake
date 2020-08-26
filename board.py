@@ -3,19 +3,20 @@
 from configs import (EMPTY_CHAR, EMPTY_COLOR)
 import random
 
-class Empty:
-    char = EMPTY_CHAR
-    color = EMPTY_COLOR
-    def __init__(self):
-       pass
-
-    def __repr__(self):
-        return self.char
-
-    def __str__(self):
-        return self.__repr__()
-
 class Board:
+    class Empty:
+        char = EMPTY_CHAR
+        color = EMPTY_COLOR
+        def __init__(self):
+            pass
+
+        def __repr__(self):
+            return self.char
+
+        def __str__(self):
+            return self.__repr__()
+
+
     def __init__(self, lines, columns):
         """
         Initializes the board filling 'data' with EMPTY_CHAR.
@@ -23,11 +24,12 @@ class Board:
         """
         self.lines = lines
         self.columns = columns
+        self.empty = self.Empty()
         self.clear()
 
     def clear(self):
         """Clear the data of the board"""
-        empty_line = [Empty() for j in range(self.columns)]
+        empty_line = [self.empty for j in range(self.columns)]
         self.data = [list(empty_line) for i in range(self.lines)]
             
     def get_coord(self, line, column):
@@ -43,14 +45,14 @@ class Board:
         free_line = random.randrange(self.lines)
         free_column = random.randrange(self.columns)
 
-        if str(self.get_coord(free_line, free_column)) != Empty.char:
+        if str(self.get_coord(free_line, free_column)) != self.empty.char:
             # if the random coordinate above is not empty,
             # find the next available coordinate
             for _ in range(self.lines):
                 available = False
                 for _ in range(self.columns):
                     free_column = (free_column + 1) % self.columns
-                    if str(self.get_coord(free_line, free_column)) == Empty.char:
+                    if str(self.get_coord(free_line, free_column)) == self.empty.char:
                         available = True
                         break
                 if available:
