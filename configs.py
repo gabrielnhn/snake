@@ -19,8 +19,8 @@ APPLE_CHAR = "*"
 APPLE_COLOR = COLOR_RED
 
 # Empty coordinate appearance:
-EMPTY_CHAR = "'"
-EMPTY_COLOR = COLOR_WHITE
+EMPTY_CHAR = "."
+EMPTY_COLOR = COLOR_BLACK
 
 # Text appearance:
 TEXT_COLOR = COLOR_YELLOW

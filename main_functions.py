@@ -24,7 +24,7 @@ def parse_configs():
             configs.TEXT_COLOR not in available_colors):
             raise ValueError('Invalid color')
 
-    except:
+    except ImportError:
         raise Exception('Missing configs') from None
 
 
