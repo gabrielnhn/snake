@@ -10,7 +10,7 @@ Star the repository if you like it!
 Feel free to send any feedback.
 """
 
-from main_functions import (new_key, set_board, print_board,
+from main_functions import (new_key, set_board, print_board_centralized,
                             next_coord, game_over, parse_configs)
 
 import configs
@@ -23,7 +23,7 @@ from board import Board
 from snake import Snake
 from apple import Apple
 
-def game(scr, board, snake, apple):
+def game(scr, board, snake, apple, height, width):
     """
     Main function used to run the game
     Take curses.initscr() as input
@@ -40,7 +40,7 @@ def game(scr, board, snake, apple):
             # print screen
             board.clear()
             set_board(board, snake, apple)
-            print_board(scr, board, score)
+            print_board_centralized(scr, board, score, height, width)
             sleep(configs.REFRESH_TIME)
 
             # process new input
@@ -60,7 +60,7 @@ def game(scr, board, snake, apple):
                 score += 1
             elif next_coord_char == snake.char:
                 # bumped into itself:
-                game_over(scr, board)
+                game_over(scr, board, height, width)
                 break
             else:
                 # empty space:
@@ -87,9 +87,9 @@ def main(screen):
     init_curses(screen)
 
     height, width = screen.getmaxyx()
-    if (height < configs.LINES + 3) or (width < configs.COLUMNS + 1):
+    if (height < configs.LINES + 3) or (width < configs.COLUMNS*2 + 2):
         # The game won't fit in the standard screen
-        score = -1
+        raise Exception("Screen too small to run the game") from None
 
     else:
         # set up structures
@@ -99,7 +99,7 @@ def main(screen):
         apple = Apple(*board.free_random_coord(), configs.APPLE_CHAR, Color.APPLE)
         
         # run the game
-        score = game(screen, board, snake, apple)
+        score = game(screen, board, snake, apple, height, width)
     
     terminate_curses(screen)
     
@@ -110,5 +110,3 @@ wrapper(main)
 # and if something happens during runtime, the terminal will be restored.
 if score >= 0:
     print("Score: {}".format(score))
-else:
-    print("Screen too small to run the game")

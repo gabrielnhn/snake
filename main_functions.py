@@ -24,7 +24,7 @@ def parse_configs():
             configs.TEXT_COLOR not in available_colors):
             raise ValueError('Invalid color')
 
-    except ImportError:
+    except AttributeError:
         raise Exception('Missing configs') from None
 
 
@@ -66,14 +66,6 @@ def new_key(scr, old_key):
     else:
         return new_value
 
-
-def column_center(columns, text):
-    """
-    When printing 'text', use this function to get the coordinates
-    to print it in the center of the board.
-    """
-    return (columns // 2) + (len(text) // 2) - 1
-
 def set_board(board, snake, apple):
     """
     Set up the new board to match the coordinates
@@ -83,21 +75,25 @@ def set_board(board, snake, apple):
     for i, j in snake.coords:
         board.set_coord(i, j, snake)
 
-def print_board(scr, board, score):
+def print_board_centralized(scr, board, score, terminal_lines, terminal_columns):
     """
-    Print every value in the board,
-    matching each of them with its color.
-    Also print the current score
+    Same as print_board,
+    but prints it in the center of the terminal.
     """
     scr.erase()
-    for line_index, board_line in enumerate(board.as_list(), start=0):
-        column_index = 0
+    
+    for line_index, board_line in enumerate(board.as_list(),
+        start=(terminal_lines//2 - (board.lines//2))):
+
+        column_index = terminal_columns//2 - (board.columns)
         for item in board_line:
-            scr.addstr(line_index, column_index, str(item), curses.color_pair(item.color))
+            scr.addstr(line_index, column_index, str(item),
+                curses.color_pair(item.color))
             column_index += 2
     
     text = "SCORE: {}".format(score)
-    scr.addstr(board.lines + 1, column_center(board.columns, text) + 1, text, Color.TEXT)
+    scr.addstr(terminal_lines//2 - (board.lines//2) - 2,
+        terminal_columns//2 - (len(text)//2), text, Color.TEXT)
     scr.refresh()
 
 
@@ -119,7 +115,7 @@ def next_coord(board, snake, key):
     
     return (i % board.lines, j % board.columns)
 
-def game_over(scr, board):
+def game_over(scr, board, terminal_lines, terminal_columns):
     """
     The game is finished. Print GAME_OVER_MESSAGE
     for GAME_OVER_TIME seconds in the center of the screen
@@ -127,7 +123,8 @@ def game_over(scr, board):
     GAME_OVER_TIME = 3 # seconds
     GAME_OVER_MESSAGE = "GAME OVER!"
 
-    scr.addstr(board.lines + 2, column_center(board.columns, GAME_OVER_MESSAGE),
-    GAME_OVER_MESSAGE, Color.TEXT)
+    scr.addstr(terminal_lines//2 - (board.lines//2) - 2,
+        terminal_columns//2 - (len(GAME_OVER_MESSAGE)//2), 
+        GAME_OVER_MESSAGE, Color.TEXT)
     scr.refresh()
     sleep(GAME_OVER_TIME)
