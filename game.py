@@ -87,9 +87,10 @@ def main(screen):
     init_curses(screen)
 
     height, width = screen.getmaxyx()
-    if (height < configs.LINES + 3) or (width < configs.COLUMNS*2 + 2):
+    if (height < configs.LINES + 4) or (width < configs.COLUMNS*2 + 3):
         # The game won't fit in the standard screen
-        raise Exception("Screen too small to run the game") from None
+            terminate_curses(screen)
+            print("Screen too small to run the game")
 
     else:
         # set up structures
@@ -108,5 +109,3 @@ def main(screen):
 wrapper(main)
 # wrapper calls the main function and gives it the argument curses.initscr()
 # and if something happens during runtime, the terminal will be restored.
-if score >= 0:
-    print("Score: {}".format(score))
