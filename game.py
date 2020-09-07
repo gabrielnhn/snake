@@ -80,16 +80,16 @@ def main(screen):
     Decide whether to run the game or not, according to terminal size
     Take curses.initscr() as input
     """
-    # score will be used like
-    # a return value of main()
+    global score
+    # score will be used as if it was
+    # the return value of main()
 
     init_curses(screen)
 
     height, width = screen.getmaxyx()
     if (height < configs.LINES + 4) or (width < configs.COLUMNS*2 + 3):
         # The game won't fit in the standard screen
-            terminate_curses(screen)
-            print("Screen too small to run the game")
+            score = -1
 
     else:
         # set up structures
@@ -100,12 +100,13 @@ def main(screen):
         
         # run the game
         score = game(screen, board, snake, apple, height, width)
-        print("Score: {}".format(score))
-    
-    terminate_curses(screen)
     
 
 # calling the main function through wrapper, to avoid curses bugs
 wrapper(main)
 # wrapper calls the main function and gives it the argument curses.initscr()
 # and if something happens during runtime, the terminal will be restored.
+if score < 0:
+    print("Screen too small to run the game")
+else:
+    print("Score: {}".format(score))
