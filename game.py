@@ -80,7 +80,6 @@ def main(screen):
     Decide whether to run the game or not, according to terminal size
     Take curses.initscr() as input
     """
-    global score
     # score will be used like
     # a return value of main()
 
@@ -101,6 +100,7 @@ def main(screen):
         
         # run the game
         score = game(screen, board, snake, apple, height, width)
+        print("Score: {}".format(score))
     
     terminate_curses(screen)
     
