@@ -98,20 +98,14 @@ def main(screen):
 
     init_curses(screen)
 
-    height, width = screen.getmaxyx()
-    if (height < configs.LINES + 4) or (width < configs.COLUMNS*2 + 3):
-        # The game won't fit in the standard screen
-            terminal_too_small = True
-
-    else:
-        # set up structures
-        board = Board(configs.LINES, configs.COLUMNS)
-        snake =  Snake(configs.INITIAL_SIZE, board.lines, board.columns,
-                       configs.SNAKE_CHAR, Color.SNAKE)
-        apple = Apple(*board.free_random_coord(), configs.APPLE_CHAR, Color.APPLE)
-        
-        # run the game
-        score, terminal_too_small = game(screen, board, snake, apple)
+    # set up structures
+    board = Board(configs.LINES, configs.COLUMNS)
+    snake =  Snake(configs.INITIAL_SIZE, board.lines, board.columns,
+                    configs.SNAKE_CHAR, Color.SNAKE)
+    apple = Apple(*board.free_random_coord(), configs.APPLE_CHAR, Color.APPLE)
+    
+    # run the game
+    score, terminal_too_small = game(screen, board, snake, apple)
     
 
 score = 0
