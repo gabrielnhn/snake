@@ -31,7 +31,7 @@ def game(scr, board, snake, apple):
     """
 
     # setup:
-    too_small = False
+    terminal_too_small = False
     score = 0
     key = KEY_RIGHT
 
@@ -43,7 +43,7 @@ def game(scr, board, snake, apple):
             
             if (height < configs.LINES + 4) or (width < configs.COLUMNS*2 + 3):
                 # The game won't fit in anymore
-                too_small = True
+                terminal_too_small = True
                 break
 
             # print screen
@@ -80,7 +80,7 @@ def game(scr, board, snake, apple):
             break
     
     # return total score:
-    return score, too_small
+    return score, terminal_too_small
     
 
 def main(screen):
@@ -92,8 +92,8 @@ def main(screen):
     # global variables are necessary 
     # because curses.wrapper() can't forward main()'s return value
     global score
-    global too_small
-    # too_small will be used as
+    global terminal_too_small
+    # terminal_too_small will be used as
     # the 'error' value of main()
 
     init_curses(screen)
@@ -101,7 +101,7 @@ def main(screen):
     height, width = screen.getmaxyx()
     if (height < configs.LINES + 4) or (width < configs.COLUMNS*2 + 3):
         # The game won't fit in the standard screen
-            too_small = True
+            terminal_too_small = True
 
     else:
         # set up structures
@@ -111,18 +111,18 @@ def main(screen):
         apple = Apple(*board.free_random_coord(), configs.APPLE_CHAR, Color.APPLE)
         
         # run the game
-        score, too_small = game(screen, board, snake, apple)
+        score, terminal_too_small = game(screen, board, snake, apple)
     
 
 score = 0
-too_small = False
+terminal_too_small = False
 
 # calling the main function through wrapper, to avoid curses bugs
 wrapper(main)
 # wrapper calls the main function and gives it the argument curses.initscr()
 # and if something happens during runtime, the terminal will be restored.
 
-if too_small:
+if terminal_too_small:
     print("Screen too small to run the game")
 
 print("Score: {}".format(score))
