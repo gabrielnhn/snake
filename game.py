@@ -23,7 +23,7 @@ from board import Board
 from snake import Snake
 from apple import Apple
 
-def game(scr, board, snake, apple, height, width):
+def game(scr, board, snake, apple):
     """
     Main function used to run the game
     Take curses.initscr() as input
@@ -37,6 +37,13 @@ def game(scr, board, snake, apple, height, width):
     # game loop:
     while True:    
         try:
+            # adjust to any screen changes in real time
+            height, width = scr.getmaxyx()
+            
+            if (height < configs.LINES + 4) or (width < configs.COLUMNS*2 + 3):
+                # The game won't fit in anymore
+                break
+
             # print screen
             board.clear()
             set_board(board, snake, apple)
@@ -99,7 +106,7 @@ def main(screen):
         apple = Apple(*board.free_random_coord(), configs.APPLE_CHAR, Color.APPLE)
         
         # run the game
-        score = game(screen, board, snake, apple, height, width)
+        score = game(screen, board, snake, apple)
     
 
 # calling the main function through wrapper, to avoid curses bugs
