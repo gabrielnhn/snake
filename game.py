@@ -31,6 +31,7 @@ def game(scr, board, snake, apple):
     """
 
     # setup:
+    too_small = False
     score = 0
     key = KEY_RIGHT
 
@@ -42,6 +43,7 @@ def game(scr, board, snake, apple):
             
             if (height < configs.LINES + 4) or (width < configs.COLUMNS*2 + 3):
                 # The game won't fit in anymore
+                too_small = True
                 break
 
             # print screen
@@ -59,7 +61,7 @@ def game(scr, board, snake, apple):
 
             next_coord_char = str(board.get_coord(i, j))
 
-            # check the new position
+            # check thscore = -1e new position
             if next_coord_char == apple.char:
                 # eat apple:
                 snake.grow_to(i, j)
@@ -78,7 +80,7 @@ def game(scr, board, snake, apple):
             break
     
     # return total score:
-    return score
+    return score, too_small
     
 
 def main(screen):
@@ -87,16 +89,19 @@ def main(screen):
     Decide whether to run the game or not, according to terminal size
     Take curses.initscr() as input
     """
+    # global variables are necessary 
+    # because curses.wrapper() can't forward main()'s return value
     global score
-    # score will be used as if it was
-    # the return value of main()
+    global too_small
+    # too_small will be used as
+    # the 'error' value of main()
 
     init_curses(screen)
 
     height, width = screen.getmaxyx()
     if (height < configs.LINES + 4) or (width < configs.COLUMNS*2 + 3):
         # The game won't fit in the standard screen
-            score = -1
+            too_small = True
 
     else:
         # set up structures
@@ -106,14 +111,18 @@ def main(screen):
         apple = Apple(*board.free_random_coord(), configs.APPLE_CHAR, Color.APPLE)
         
         # run the game
-        score = game(screen, board, snake, apple)
+        score, too_small = game(screen, board, snake, apple)
     
+
+score = 0
+too_small = False
 
 # calling the main function through wrapper, to avoid curses bugs
 wrapper(main)
 # wrapper calls the main function and gives it the argument curses.initscr()
 # and if something happens during runtime, the terminal will be restored.
-if score < 0:
+
+if too_small:
     print("Screen too small to run the game")
-else:
-    print("Score: {}".format(score))
+
+print("Score: {}".format(score))
