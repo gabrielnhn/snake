@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Snake game written in Python,
 using 'curses' module to print the board in the terminal.
