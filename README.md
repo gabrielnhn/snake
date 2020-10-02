@@ -9,5 +9,5 @@
 <h4>Edit configs.py:</h4>
 <p>Change the settings to your liking.</p>
 
-<h4>python3 game.py:</h4>
+<h4>./game.py:</h4>
 <p>Run it!</p> 
