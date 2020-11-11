@@ -1,4 +1,5 @@
-<h1>Snake game written in Python:</h1>
+<img src="docs/snake_screenshot.png" width="400" height="400">
+<h2>Snake game in Python:</h2>
 <h3>Uses 'curses' module to print the board in the terminal</h3>
 
 <h3>Running the game:</h3>
