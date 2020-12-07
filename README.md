@@ -1,7 +1,7 @@
 <img src="docs/snake_screenshot.png" width="400" height="400">
 
 ## Snake game in the terminal using Python:
-### Uses 'curses' module.
+### Uses `curses` module.
 
 #### Install `curses`:
 Check whether 'curses' module is installed.
