@@ -3,8 +3,6 @@
 ## Snake game in the terminal using Python:
 ### Uses 'curses' module.
 
-### Running the game:
-
 #### Install `curses`:
 Check whether 'curses' module is installed.
 
