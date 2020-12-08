@@ -1,4 +1,4 @@
-"""All major functions used in the program are defined here:"""
+"""All major functions used by the main program are defined here:"""
 
 import configs
 def parse_configs():
