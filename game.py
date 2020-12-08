@@ -6,6 +6,8 @@ using 'curses' module to print the board in the terminal.
 Run this file to play the game!
 """
 
+__author__ = "Gabriel Nascarella Hishida"
+
 
 from main_functions import (new_key, set_board, print_board_centralized,
                             next_coord, game_over, parse_configs)
