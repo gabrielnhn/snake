@@ -1,7 +1,7 @@
 ## Snake game in the terminal using Python:
 
 ### Install `curses`:
-Check whether 'curses' module is installed.
+Check whether `curses.py` module is installed. (PS: It probably is!)
 
 ### Edit `configs.py`:
 Change the settings to your liking.
