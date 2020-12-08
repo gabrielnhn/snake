@@ -1,8 +1,9 @@
-"""Module used to initialize and terminate colors and 'curses' module"""
+"""Module used to manage the 'curses' module"""
 import curses
 from configs import (EMPTY_COLOR, SNAKE_COLOR, APPLE_COLOR, TEXT_COLOR)
 
 class Color:
+    """Enum for object colors"""
     EMPTY = 1
     SNAKE = 2
     APPLE = 3
