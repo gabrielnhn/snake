@@ -1,4 +1,4 @@
-# Change the game settings:
+"""Change the game settings:"""
 
 # Available colors:
 from curses import (COLOR_BLACK, COLOR_BLUE, COLOR_CYAN, COLOR_GREEN,
@@ -14,15 +14,15 @@ SNAKE_CHAR = "O"
 SNAKE_COLOR = COLOR_GREEN
 INITIAL_SIZE = 2
 
-# Apple appearance:
+# Apple visual:
 APPLE_CHAR = "*"
 APPLE_COLOR = COLOR_RED
 
-# Empty coordinate appearance:
+# Empty coordinate visual:
 EMPTY_CHAR = "^"
 EMPTY_COLOR = COLOR_BLACK
 
-# Text appearance:
+# Text visual:
 TEXT_COLOR = COLOR_YELLOW
 
 # Game pacing:
