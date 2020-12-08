@@ -4,7 +4,9 @@ from configs import (EMPTY_CHAR, EMPTY_COLOR)
 import random
 
 class Board:
+    """Board structure, a matrix implemented on a list of lists"""
     class Empty:
+        """Empty item class"""
         char = EMPTY_CHAR
         color = EMPTY_COLOR
         def __init__(self):
@@ -15,7 +17,6 @@ class Board:
 
         def __str__(self):
             return self.__repr__()
-
 
     def __init__(self, lines, columns):
         """
