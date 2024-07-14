@@ -10,7 +10,7 @@ LINES = 12
 COLUMNS = 12
 
 # Snake configs:
-SNAKE_CHAR = "@"
+SNAKE_CHAR = "O"
 SNAKE_COLOR = COLOR_GREEN
 INITIAL_SIZE = 2
 
@@ -19,11 +19,11 @@ APPLE_CHAR = "*"
 APPLE_COLOR = COLOR_RED
 
 # Empty coordinate visual:
-EMPTY_CHAR = "^"
+EMPTY_CHAR = "#"
 EMPTY_COLOR = COLOR_BLACK
 
 # Text visual:
 TEXT_COLOR = COLOR_YELLOW
 
 # Game pacing:
-REFRESH_TIME = 0.11 # seconds
+REFRESH_TIME = 0.09#0.15 #0.11 # seconds

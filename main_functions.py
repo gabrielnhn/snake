@@ -35,7 +35,7 @@ from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT,
                     COLOR_MAGENTA, COLOR_RED, COLOR_WHITE, COLOR_YELLOW)
 from my_curses import Color
 from board import Board
-from snake import Snake
+from snake import Snake, SnakePart
 from apple import Apple
 
 
@@ -72,8 +72,11 @@ def set_board(board, snake, apple):
     of the apple and the snake.
     """
     board.set_coord(apple.line, apple.column, apple)
-    for i, j in snake.coords:
-        board.set_coord(i, j, snake)
+    for i, j, direction in snake.coords[:-1]:
+        # board.set_coord(i, j, snake)
+        board.set_coord(i, j, SnakePart(direction))
+    i,j,_ = snake.coords[-1]
+    board.set_coord(i, j, snake.head)
 
 def print_board_centralized(scr, board, score, terminal_lines, terminal_columns):
     """
@@ -102,18 +105,22 @@ def next_coord(board, snake, key):
     Return the next coordinates the snake will be
     when following the direction pointed by 'key'
     """
-    i, j = snake.get_head()
+    i, j, _ = snake.get_head()
 
     if key == KEY_RIGHT:
         j += 1
+        d = ">"
     elif key == KEY_LEFT:
         j += -1
+        d = "<"
     elif key == KEY_UP:
         i += -1
+        d = "^"
     elif key == KEY_DOWN:
         i += 1
+        d = "v"
     
-    return (i % board.lines, j % board.columns)
+    return (i % board.lines, j % board.columns, d)
 
 def game_over(scr, board, terminal_lines, terminal_columns):
     """

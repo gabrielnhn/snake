@@ -19,7 +19,7 @@ from time import sleep
 from curses import (KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_LEFT, wrapper)
 from my_curses import (init_curses, terminate_curses, Color)
 from board import Board
-from snake import Snake
+from snake import Snake, SnakePart
 from apple import Apple
 
 def game(scr, board, snake, apple):
@@ -56,23 +56,24 @@ def game(scr, board, snake, apple):
 
             # process new game state:
             # get the next position of the snake
-            i, j = next_coord(board, snake, key)
+            i, j, d = next_coord(board, snake, key)
 
             next_coord_char = str(board.get_coord(i, j))
 
             # check thscore = -1e new position
             if next_coord_char == apple.char:
                 # eat apple:
-                snake.grow_to(i, j)
+                snake.grow_to(i, j, d)
                 apple.move(*board.free_random_coord())
                 score += 1
-            elif next_coord_char == snake.char:
+            elif next_coord_char != board.Empty.char:
+            # elif isinstance(next_coord_char, SnakePart):
                 # bumped into itself:
                 game_over(scr, board, height, width)
                 break
             else:
                 # empty space:
-                snake.move_to(i, j)
+                snake.move_to(i, j, d)
 
         except KeyboardInterrupt:
             # stop the game
